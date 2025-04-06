@@ -5,10 +5,15 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { Menu } from 'lucide-react'
 
 const navItems = [
-  { name: 'home', href: '/' },
+  { name: 'Home', href: '/' },
   { name: 'about', href: '/about' },
-  { name: 'services', href: '/services' },
-  { name: 'pricing', href: '/pricing' },
+  // { name: 'services', href: '/services' },
+  // { name: 'pricing', href: '/pricing' },
+  { name: 'Events & Tournaments', href: '/events-tournaments' },
+  { name: 'Get involved', href: '/get-involved' },
+  { name: 'News', href: '/news' },
+  
+
 ]
 
 export function Navbar() {
