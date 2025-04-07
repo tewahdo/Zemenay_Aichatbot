@@ -7,11 +7,11 @@ import { Menu } from 'lucide-react'
 const navItems = [
   { name: 'Home', href: '/' },
   { name: 'about', href: '/about' },
-  // { name: 'services', href: '/services' },
-  // { name: 'pricing', href: '/pricing' },
-  { name: 'Events & Tournaments', href: '/events-tournaments' },
-  { name: 'Get involved', href: '/get-involved' },
+  { name: 'Events', href: '/events' },
+  { name: 'Communities', href: '/communities' },
   { name: 'News', href: '/news' },
+  { name: 'Contact', href: '/contact' },
+  { name: 'Games', href: '/games' },
   
 
 ]
