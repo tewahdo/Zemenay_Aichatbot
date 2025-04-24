@@ -1,48 +1,155 @@
 // src/app/events/page.tsx
-import React from 'react';
-import EventFilters from '@/components/events-ui/event-filters';
-import EventCard from '@/components/events-ui/event-cards';
+'use client'; // Add this because we'll use useState for filters
 
-const mockEvents = [
-    { id: 1, slug: "weekly-tournament-1", title: "Weekly Tournament", date: "2024-08-15T18:00:00Z", location: "Online", imageUrl: "/images/placeholder-event1.jpg" },
-    { id: 2, slug: "community-game-night-2", title: "Community Game Night", date: "2024-08-17T19:00:00Z", location: "Discord", imageUrl: "/images/placeholder-event2.jpg" },
-    { id: 3, slug: "lan-party-3", title: "LAN Party Meetup", date: "2024-08-25T12:00:00Z", location: "Addis Ababa", imageUrl: "/images/placeholder-event3.jpg" },
-    { id: 4, slug: "workshop-4", title: "Game Dev Workshop", date: "2024-09-05T14:00:00Z", location: "Online", imageUrl: "/images/placeholder-event4.jpg" },
-    { id: 5, slug: "casual-meetup-5", title: "Casual Meetup", date: "2024-09-10T19:30:00Z", location: "Coffee Shop X", imageUrl: "/images/placeholder-event5.jpg" },
-    { id: 6, slug: "major-league-finals-6", title: "Major League Finals", date: "2024-09-20T10:00:00Z", location: "Stadium Y", imageUrl: "/images/placeholder-event6.jpg" },
+import React, { useState } from 'react';
+import { Button } from '@/components/ui/button'; // Assuming you have this shadcn/ui component
+import EventCard from '@/components/events-ui/event-cards'; // We will define/refine this next
+import { cn } from '@/lib/utils'; // Utility for conditional classes
+
+// Updated mock data structure based on Figma
+const mockEventsData = [
+  {
+    id: 1,
+    slug: 'mobile-legends-championship',
+    title: 'Mobile Legends Championship',
+    date: 'March 20, 2024',
+    location: 'Addis Ababa',
+    imageUrl: '/assets/images/events/mobile_legend_championship.webp',
+    prize: '50,000 ETB',
+    participants: '32 Teams',
+    type: 'tournament',
+  },
+  {
+    id: 2,
+    slug: 'cs2-national-finals',
+    title: 'CS2 National Finals',
+    date: 'March 20, 2024',
+    location: 'Addis Ababa',
+    imageUrl: '/assets/images/events/cs_championship.webp',
+    prize: '75,000 ETB',
+    participants: '16 Teams',
+    type: 'tournament',
+  },
+  {
+    id: 3,
+    slug: 'ethiopian-game-jam-2024',
+    title: 'Ethiopian Game Jam 2024',
+    date: 'April 1, 2024',
+    location: 'Hybrid Event',
+    imageUrl: '/placeholder.svg',
+    prize: '25,000 ETB',
+    participants: '100 Developers',
+    type: 'game-jam',
+  },
+  {
+    id: 4,
+    slug: 'addis-gaming-festival',
+    title: 'Addis Gaming Festival',
+    date: 'April 15, 2024',
+    location: 'Millennium Hall',
+    imageUrl: '/placeholder.svg',
+    prize: '30,000 ETB',
+    participants: '500 Players',
+    type: 'lan-party', // Assuming festival includes LAN elements
+  },
+  {
+    id: 5,
+    slug: 'fifa-24-cup',
+    title: 'FIFA 24 Cup',
+    date: 'April 20, 2024',
+    location: 'Addis Ababa',
+    imageUrl: '/assets/images/events/EA_Sport_FC_24_championship.webp',
+    prize: '40,000 ETB',
+    participants: '64 Players',
+    type: 'tournament',
+  },
+  {
+    id: 6,
+    slug: 'unity-workshop-hackathon',
+    title: 'Unity Workshop & Hackathon',
+    date: 'May 1, 2024',
+    location: 'Online',
+    imageUrl: '/placeholder.svg',
+    prize: '20,000 ETB', // Example prize
+    participants: '50 Teams',
+    type: 'game-jam', // Or workshop type if needed
+  },
 ];
 
+// Define type for clearer structure (optional but good practice)
+export type EventType = (typeof mockEventsData)[0];
+
 const EventsPage = () => {
+  const [activeFilter, setActiveFilter] = useState<string>('all');
+
+  const filterTypes = [
+    { label: 'All Events', value: 'all' },
+    { label: 'Tournaments', value: 'tournament' },
+    { label: 'Game Jams', value: 'game-jam' },
+    { label: 'LAN Parties', value: 'lan-party' },
+  ];
+
+  const filteredEvents =
+    activeFilter === 'all'
+      ? mockEventsData
+      : mockEventsData.filter((event) => event.type === activeFilter);
+
   return (
-    <main className="flex-grow">
-      <section className="bg-gray-900 py-20 text-center text-white">
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold uppercase tracking-wider">
-          Events
-        </h1>
+    <main className="flex-grow text-white"> {/* Assuming dark bg set globally */}
+      {/* Title Section */}
+      <section className="py-16 md:py-20 lg:py-24 text-center">
+        <div className="container mx-auto px-4">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 tracking-tight">
+            Gaming Events
+          </h1>
+          <p className="text-lg md:text-xl text-zinc-400 max-w-3xl mx-auto"> {/* Changed to zinc-400 for muted text */}
+            Discover and participate in Ethiopia&apos;s biggest gaming events. From
+            tournaments to game jams, there&apos;s something for everyone.
+          </p>
+        </div>
       </section>
 
-      <section className="container mx-auto py-8 px-4">
-        <EventFilters />
-      </section>
-
-      <section className="container mx-auto py-8 px-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {mockEvents.map(event => (
-            <EventCard key={event.id} event={event} />
+      {/* Filter Section */}
+      <section className="container mx-auto px-4 pb-8 md:pb-12 flex justify-center">
+        <div className="flex flex-wrap justify-center gap-2 md:gap-4">
+          {filterTypes.map((filter) => (
+            <Button
+              key={filter.value}
+              // Use 'ghost' variant as a base for inactive state to remove default shadcn secondary background/border
+              variant={activeFilter === filter.value ? 'default' : 'ghost'}
+              onClick={() => setActiveFilter(filter.value)}
+              className={cn(
+                'rounded-md px-4 py-2 text-sm font-medium transition-colors',
+                activeFilter === filter.value
+                  ? 'bg-primary text-primary-foreground hover:bg-primary/90' // Active state (Primary Purple) - Assumes this is correct
+                  : 'bg-zinc-800 text-zinc-300 hover:bg-zinc-700 focus-visible:ring-offset-zinc-900' // Inactive state (Dark Grey) - Refined shades
+                                                                                                 // Added focus-visible offset color matching card bg
+              )}
+            >
+              {filter.label}
+            </Button>
           ))}
-          {mockEvents.length === 0 && (
-            <p className="text-center text-muted-foreground col-span-full">
-              No events found matching your criteria.
-            </p>
-          )}
         </div>
       </section>
 
-      <section className="container mx-auto py-8 px-4 flex justify-center">
-        <div className="p-2 border rounded bg-card text-card-foreground shadow-sm">
-          Pagination Placeholder
-        </div>
+      {/* Events Grid Section */}
+      <section className="container mx-auto px-4 pb-16 md:pb-20 lg:pb-24">
+        {filteredEvents.length > 0 ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+            {filteredEvents.map((event) => (
+              <EventCard key={event.id} event={event} />
+            ))}
+          </div>
+        ) : (
+          <div className="text-center py-16">
+            <p className="text-xl text-zinc-500"> {/* Used zinc-500 for slightly dimmer 'not found' text */}
+              No events found matching &apos;{activeFilter}&apos; filter.
+            </p>
+          </div>
+        )}
       </section>
+
+      {/* Pagination Placeholder ... */}
     </main>
   );
 };
