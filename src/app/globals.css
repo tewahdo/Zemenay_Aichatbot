@@ -46,6 +46,7 @@
     --destructive-foreground: 0 0% 100%; /* Default shadcn */
 
     --ring: 258 79% 45%; /* #4318D1 */ /* Often same as primary */
+    --rating-yellow:  #FACC15;
   }
 }
 

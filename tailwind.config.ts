@@ -60,6 +60,7 @@ const config = {
         'badge-purple-text': '#A07EFF',
         'badge-grey-bg': '#FFFFFF1A',
         'badge-grey-text': '#CCCCCC',
+        'rating-yellow': '#FACC15',
       },
       borderRadius: {
         lg: 'var(--radius)',
