@@ -4,11 +4,11 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import StatCard from '@/components/about-ui/stat-card';
-import TeamMemberCard, { TeamMemberCardProps } from '@/components/about-ui/team-member-card';
+import ExecutiveMemberCard, { ExecutiveMemberCardProps } from '@/components/about-ui/executive-member-card';
 import PartnerCard, { PartnerCardProps } from '@/components/about-ui/partner-card';
 
 const AboutPage = () => {
-  const teamMembers: TeamMemberCardProps[] = [
+  const executiveMembers: ExecutiveMemberCardProps[] = [
     { imageUrl: '/images/team/abebe-kebede.webp', name: 'Abebe Kebede', title: 'Executive Director', twitterUrl: '#', linkedinUrl: '#' },
     { imageUrl: '/images/team/sara-tekle.webp', name: 'Sara Tekle', title: 'Community Manager', twitterUrl: '#', linkedinUrl: '#' },
     { imageUrl: '/images/team/daniel-haile.webp', name: 'Daniel Haile', title: 'Events Coordinator', twitterUrl: '#', linkedinUrl: '#' },
@@ -24,7 +24,7 @@ const AboutPage = () => {
 
   return (
     <main className="flex-grow">
-      {/* Section 1: Hero / Intro */}
+       {/* Section 1: Hero / Intro */}
       <section className="container mx-auto px-6 py-16 md:py-24">
         <div className="max-w-xl">
           <h1 className="text-5xl md:text-6xl font-bold text-foreground mb-6 leading-tight">
@@ -46,16 +46,17 @@ const AboutPage = () => {
             <p className="text-base text-muted-foreground mb-8">
               To foster a vibrant gaming ecosystem in Ethiopia by supporting players, developers, and content creators. We believe in the power of games to unite, educate, and inspire.
             </p>
-            <div className="grid grid-cols-2 gap-4 sm:gap-6"> {/* Added sm:gap-6 for slightly more space */}
+            <div className="grid grid-cols-2 gap-4 sm:gap-6">
               <StatCard value="50K+" label="Active Members" />
               <StatCard value="100+" label="Events Hosted" />
             </div>
           </div>
-          <div className="relative aspect-[3/2] bg-muted rounded-xl overflow-hidden shadow-lg"> {/* Added shadow-lg */}
+          <div className="relative aspect-[3/2] bg-muted rounded-xl overflow-hidden shadow-lg">
             <Image src="/images/about/mission-image.webp" alt="EGA community event" layout="fill" objectFit="cover" />
           </div>
         </div>
       </section>
+
 
       {/* Section 3: Executive Members */}
       <section className="container mx-auto px-6 py-16 md:py-24">
@@ -63,11 +64,11 @@ const AboutPage = () => {
           Executive Members
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
-          {teamMembers.map(member => <TeamMemberCard key={member.name} {...member} />)}
+          {executiveMembers.map(member => <ExecutiveMemberCard key={member.name} {...member} />)}
         </div>
       </section>
 
-      {/* Section 4: Our Partners */}
+       {/* Section 4: Our Partners */}
       <section className="container mx-auto px-6 py-16 md:py-24">
         <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-12 text-left">
           Our Partners
@@ -78,7 +79,7 @@ const AboutPage = () => {
       </section>
 
       {/* Section 5: Join Our Mission (CTA) */}
-      <section className="bg-card rounded-xl container mx-auto my-16 md:my-24 p-8 md:p-16 text-center shadow-xl"> {/* Added shadow-xl */}
+      <section className="bg-card rounded-xl container mx-auto my-16 md:my-24 p-8 md:p-16 text-center shadow-xl">
         <h2 className="text-3xl md:text-4xl font-bold text-card-foreground mb-4">
           Join Our Mission
         </h2>
@@ -95,7 +96,7 @@ const AboutPage = () => {
             <Button
               size="lg"
               variant="outline"
-              className="border-muted-foreground/50 text-foreground hover:bg-accent hover:text-accent-foreground hover:border-muted-foreground" // text-foreground for better contrast on outline
+              className="border-muted-foreground/50 text-foreground hover:bg-accent hover:text-accent-foreground hover:border-muted-foreground"
             >
               Contact Us
             </Button>
