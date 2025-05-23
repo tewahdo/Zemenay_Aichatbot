@@ -6,11 +6,46 @@ import HeroSection from '@/components/home-ui/hero';
 import ServicesOverview from '@/components/home-ui/services-overview';
 import { FeaturedEvents } from '@/components/home-ui/featured-events';
 import CommunityHighlights from '@/components/home-ui/community-highlights';
-import { NewsHighlights } from '@/components/home-ui/news-highlights';
+import NewsHighlights from '@/components/home-ui/news-highlights'; // Ensured default import
 import Testimonials from '@/components/home-ui/testimonials';
 import ClientLogos from '@/components/home-ui/client-logos';
 
 // Mock Data
+// --- Mock Data for News Highlights ---
+const mockNewsItems = [
+	{
+		id: 1,
+		slug: 'ega-launches-new-developer-grant',
+		title: 'EGA Launches New Developer Grant Program',
+		date: 'July 15, 2024',
+		excerpt:
+			'Supporting upcoming Ethiopian game developers with funding and mentorship...',
+		imageUrl: '/images/news/news-placeholder-1.webp',
+		category: 'Announcement',
+	},
+	{
+		id: 2,
+		slug: 'interview-with-rising-star-gamer',
+		title: 'Interview with Rising Star Pro Gamer: AlphaWolf',
+		date: 'July 10, 2024',
+		excerpt:
+			'Get to know AlphaWolf, the recent winner of the National CS2 League...',
+		imageUrl: '/images/news/news-placeholder-2.webp',
+		category: 'Interview',
+	},
+	{
+		id: 3,
+		slug: 'game-dev-workshop-recap',
+		title: 'Recap: Successful Game Development Workshop',
+		date: 'July 5, 2024',
+		excerpt:
+			'Over 50 aspiring developers attended our latest workshop on Unity basics...',
+		imageUrl: '/images/news/news-placeholder-3.webp',
+		category: 'Event Recap',
+	},
+];
+export type NewsItemType = (typeof mockNewsItems)[0]; // Re-added NewsItemType
+
 // --- Mock Data for Testimonials ---
 const mockTestimonials = [
 	{
@@ -82,7 +117,7 @@ const HomePage = () => {
 			<ServicesOverview />
 			<FeaturedEvents />
 			<CommunityHighlights />
-			<NewsHighlights />
+			<NewsHighlights newsItems={mockNewsItems} /> {/* Passed mockNewsItems */}
 			<Testimonials testimonials={mockTestimonials} />
 			<ClientLogos logos={mockClientLogos} />
 		</main>

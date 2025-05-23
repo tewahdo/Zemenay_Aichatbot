@@ -1,69 +1,44 @@
-import { ArrowUpRight } from "lucide-react";
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import Image from "next/image";
-import Link from "next/link";
+// src/components/home-ui/news-highlights.tsx
+import React from 'react';
+import Link from 'next/link';
+import NewsCard from '@/components/news-ui/news-card'; // Reusable news card
+import { Button } from '@/components/ui/button';
+import type { NewsItemType } from '@/app/page';
+import { ArrowRight } from 'lucide-react';
 
-const news = [
-  {
-    id: 1,
-    title: "Ethiopian Gaming Championship 2025",
-    description: "The biggest gaming event in Ethiopia is happening this year!",
-    imageUrl: "/images/ethiopian-gaming-championship.jpg",
-    link: "/news/ethiopian-gaming-championship-2025",
-  },
-  {
-    id: 2,
-    title: "New Gaming Cafe Opens in Addis Ababa",
-    description: "A state-of-the-art gaming cafe has opened in the heart of Addis Ababa.",
-    imageUrl: "/images/gaming-cafe-addis.jpg",
-    link: "/news/new-gaming-cafe-addis-ababa",
-  },
-  {
-    id: 3,
-    title: "Ethiopian Esports Team Shines Internationally",
-    description: "The Ethiopian esports team has made waves in an international tournament.",
-    imageUrl: "/images/ethiopian-esports-team.jpg",
-    link: "/news/ethiopian-esports-team-international",
-  },
-];
+interface NewsHighlightsProps {
+  newsItems: NewsItemType[];
+}
 
-export function NewsHighlights() {
+const NewsHighlights: React.FC<NewsHighlightsProps> = ({ newsItems }) => {
+  const displayNews = newsItems.slice(0, 3); // Show 3 news items
+
   return (
-    <section className="py-24 bg-gradient-to-b from-background to-background/80">
-      <div className="container mx-auto px-4">
-        <div className="flex flex-col items-center mb-12 text-center">
-          <h2 className="text-3xl font-bold mb-4">News & Highlights</h2>
-          <p className="text-muted-foreground max-w-2xl">
-            Stay updated with the latest gaming news and highlights from Ethiopia. Explore events, achievements, and more!
-          </p>
+    <section className="py-16 md:py-24 bg-background">
+      <div className="container mx-auto px-6">
+        <div className="flex flex-col md:flex-row justify-between items-center mb-8 md:mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4 md:mb-0">
+            Latest News
+          </h2>
+          <Link href="/news" passHref legacyBehavior>
+            <Button variant="outline" className="border-muted-foreground/50 text-muted-foreground hover:bg-accent hover:text-accent-foreground">
+              View All News
+              <ArrowRight className="ml-2 h-4 w-4" />
+            </Button>
+          </Link>
         </div>
-        <div className="grid gap-8 md:grid-cols-3">
-          {news.map((item) => (
-            <Card key={item.id} className="relative overflow-hidden group">
-              <div className="absolute inset-0 bg-gradient-to-b from-border to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              <CardHeader className="relative z-10">
-                <Image
-                  src={item.imageUrl}
-                  alt={item.title}
-                  width={300}
-                  height={200}
-                  className="rounded-lg mb-4"
-                />
-                <CardTitle>{item.title}</CardTitle>
-              </CardHeader>
-              <CardContent className="relative z-10">
-                <p className="text-muted-foreground">{item.description}</p>
-              </CardContent>
-              <CardFooter className="relative z-10">
-                <Link href={item.link} className="group inline-flex items-center text-primary hover:underline">
-                  Read More
-                  <ArrowUpRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
-                </Link>
-              </CardFooter>
-            </Card>
-          ))}
-        </div>
+        {displayNews.length > 0 ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+            {displayNews.map((item) => (
+              <NewsCard key={item.id} newsItem={item} />
+            ))}
+          </div>
+        ) : (
+          <p className="text-center text-muted-foreground">No news highlights at the moment.</p>
+        )}
       </div>
     </section>
   );
-}
+};
+
+export default NewsHighlights;
