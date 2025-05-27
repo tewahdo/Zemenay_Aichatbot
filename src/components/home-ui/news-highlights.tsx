@@ -1,7 +1,6 @@
-// src/components/home-ui/news-highlights.tsx
 import React from 'react';
 import Link from 'next/link';
-import NewsCard from '@/components/news-ui/news-card'; // Reusable news card
+import NewsCard from '@/components/news-ui/news-card';
 import { Button } from '@/components/ui/button';
 import type { NewsItemType } from '@/app/page';
 import { ArrowRight } from 'lucide-react';
@@ -11,7 +10,7 @@ interface NewsHighlightsProps {
 }
 
 const NewsHighlights: React.FC<NewsHighlightsProps> = ({ newsItems }) => {
-  const displayNews = newsItems.slice(0, 3); // Show 3 news items
+  const displayNews = newsItems.slice(0, 3);
 
   return (
     <section className="py-16 md:py-24 bg-background">

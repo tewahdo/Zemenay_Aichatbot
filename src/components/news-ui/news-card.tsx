@@ -1,4 +1,3 @@
-// src/components/news-ui/news-card.tsx
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -20,7 +19,7 @@ const NewsCard: React.FC<NewsCardProps> = ({ newsItem, className }) => {
       <a className={cn("group block bg-card rounded-lg overflow-hidden shadow-lg hover:shadow-primary/20 transition-all duration-300 transform hover:-translate-y-1", className)}>
         <div className="relative aspect-video w-full bg-muted">
           <Image
-            src={imageUrl || '/images/news/news-placeholder-default.webp'} // Fallback
+            src={imageUrl || '/images/news/news-placeholder-default.webp'}
             alt={title}
             layout="fill"
             objectFit="cover"
