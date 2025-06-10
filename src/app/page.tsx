@@ -1,14 +1,11 @@
-// src/app/page.tsx
 import React from 'react';
-
-// Home Page Specific UI Components
 import HeroSection from '@/components/home-ui/hero';
 import ServicesOverview from '@/components/home-ui/services-overview';
 import { FeaturedEvents } from '@/components/home-ui/featured-events';
 import CommunityHighlights from '@/components/home-ui/community-highlights';
 import NewsHighlights from '@/components/home-ui/news-highlights';
 import Testimonials from '@/components/home-ui/testimonials';
-import ClientLogos from '@/components/home-ui/client-logos';
+import PartnerLogos from '@/components/home-ui/partner-logos';
 
 // Mock Data
 export const mockNewsItems = [
@@ -116,40 +113,28 @@ const mockTestimonials = [
 ];
 export type TestimonialType = (typeof mockTestimonials)[0];
 
-// --- Mock Data for Client/Partner Logos ---
-const mockClientLogos = [
+// --- Mock Data for Partner Logos ---
+const mockPartnerLogos = [
 	{
 		id: 1,
-		name: 'Ethio Telecom',
-		logoUrl: '/images/partners/ethio-telecom-logo-dark.webp',
+		name: 'Efuye Gela',
+		logoUrl: '/assets/images/partners/efuye_gela.png',
 	},
 	{
 		id: 2,
-		name: 'Dashen Bank',
-		logoUrl: '/images/partners/dashen-bank-logo-dark.webp',
+		name: 'Chewata Awaqi',
+		logoUrl: '/assets/images/partners/chewata_awaqi.png',
 	},
+	
 	{
 		id: 3,
-		name: 'Awash Bank',
-		logoUrl: '/images/partners/awash-bank-logo-dark.webp',
+		name: 'Busara',
+		logoUrl: '/assets/images/partners/busara.webp',
 	},
-	{
-		id: 4,
-		name: 'Habesha Breweries',
-		logoUrl: '/images/partners/habesha-breweries-logo-dark.webp',
-	},
-	{
-		id: 5,
-		name: 'Microsoft Africa',
-		logoUrl: '/images/partners/microsoft-africa-logo-dark.webp',
-	},
-	{
-		id: 6,
-		name: 'Unity',
-		logoUrl: '/images/partners/unity-logo-dark.webp',
-	},
+	
+	
 ];
-export type ClientLogoType = (typeof mockClientLogos)[0];
+export type PartnerLogoType = (typeof mockPartnerLogos)[0];
 
 const HomePage = () => {
 	return (
@@ -160,7 +145,7 @@ const HomePage = () => {
 			<CommunityHighlights />
 			<NewsHighlights newsItems={mockNewsItems} />
 			<Testimonials testimonials={mockTestimonials} />
-			<ClientLogos logos={mockClientLogos} />
+			<PartnerLogos logos={mockPartnerLogos} />
 		</main>
 	);
 };

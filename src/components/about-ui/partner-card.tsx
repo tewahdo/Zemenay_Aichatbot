@@ -13,7 +13,7 @@ export interface PartnerCardProps {
 const PartnerCard: React.FC<PartnerCardProps> = ({ logoUrl, name, description, className }) => {
   return (
     <div className={cn(
-        "bg-card rounded-xl p-6 text-center flex flex-col items-center justify-center shadow-md h-full", // Added h-full for consistent height in grid
+        "bg-card rounded-xl p-6 text-center flex flex-col items-center justify-center shadow-md h-full",
         className
       )}
     >

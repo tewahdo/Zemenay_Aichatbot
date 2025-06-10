@@ -1,21 +1,18 @@
-// src/components/about-ui/executive-member-card.tsx
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
 import { Twitter, Linkedin } from 'lucide-react';
 
-// Renamed Props Interface
 export interface ExecutiveMemberCardProps {
   imageUrl: string;
   name: string;
-  title: string; // Title like "Executive Director"
+  title: string;
   twitterUrl?: string;
   linkedinUrl?: string;
   className?: string;
 }
 
-// Renamed Component
 const ExecutiveMemberCard: React.FC<ExecutiveMemberCardProps> = ({
   imageUrl,
   name,
@@ -25,15 +22,20 @@ const ExecutiveMemberCard: React.FC<ExecutiveMemberCardProps> = ({
   className,
 }) => {
   return (
-    <div className={cn("bg-card rounded-xl overflow-hidden flex flex-col shadow-lg", className)}>
-      <div className="relative w-full aspect-square bg-muted">
+    <div
+      className={cn(
+        "group bg-card rounded-xl overflow-hidden flex flex-col shadow-lg",
+        "transition-all duration-300 ease-in-out hover:shadow-2xl hover:-translate-y-2",
+        className
+      )}
+    >
+      <div className="relative w-full aspect-square bg-muted overflow-hidden">
         <Image
           src={imageUrl}
-          alt={name} // Alt text remains appropriate
-          width={270}
-          height={270}
-          style={{ objectFit: 'cover' }}
-          className="transition-transform duration-300 group-hover:scale-105"
+          alt={name}
+          layout="fill"
+          objectFit="cover"
+          className="transition-transform duration-300 ease-in-out group-hover:scale-105"
         />
       </div>
       <div className="p-4 text-center flex-grow flex flex-col justify-between">

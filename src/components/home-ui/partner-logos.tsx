@@ -1,14 +1,13 @@
-// src/components/home-ui/client-logos.tsx
 import React from 'react';
 import Image from 'next/image';
-import Marquee from '@/components/ui/marquee'; // Your Marquee component
-import type { ClientLogoType } from '@/app/page';
+import Marquee from '@/components/ui/marquee'; 
+import type { PartnerLogoType } from '@/app/page';
 
-interface ClientLogosProps {
-  logos: ClientLogoType[];
+interface PartnerLogosProps {
+  logos: PartnerLogoType[];
 }
 
-const ClientLogos: React.FC<ClientLogosProps> = ({ logos }) => {
+const PartnerLogos: React.FC<PartnerLogosProps> = ({ logos }) => {
   if (!logos || logos.length === 0) {
     return null;
   }
@@ -32,10 +31,9 @@ const ClientLogos: React.FC<ClientLogosProps> = ({ logos }) => {
           Trusted By & In Partnership With
         </h3>
         <div className="relative">
-          <Marquee pauseOnHover className="[--duration:40s]"> {/* Adjust duration as needed */}
+          <Marquee pauseOnHover className="[--duration:40s]">
             {marqueeLogos}
           </Marquee>
-          {/* Optional: Fades for a cleaner look if Marquee doesn't handle it */}
           <div className="pointer-events-none absolute inset-y-0 left-0 w-1/6 bg-gradient-to-r from-background to-transparent"></div>
           <div className="pointer-events-none absolute inset-y-0 right-0 w-1/6 bg-gradient-to-l from-background to-transparent"></div>
         </div>
@@ -44,4 +42,4 @@ const ClientLogos: React.FC<ClientLogosProps> = ({ logos }) => {
   );
 };
 
-export default ClientLogos;
+export default PartnerLogos;
