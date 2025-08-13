@@ -49,5 +49,14 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
 
 ```bash
 npm run dev
+```
 
+5. **Watch the demo**
+   [![Watch the demo](https://img.youtube.com/vi/fjEW0dia-pc/hqdefault.jpg)](https://youtu.be/fjEW0dia-pc)
+
+This video demonstrates the **Zemenay Chatbot** in action. It covers:
+
+* How to set up and start the chatbot locally
+* Navigating its main features
+* Interacting with the chatbot in real time
 
