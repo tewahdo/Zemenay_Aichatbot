@@ -32,7 +32,7 @@ export default function AdminLoginPage() {
   }, [session, router]);
 
   return (
-    <div style={{ width: "400px", margin: "auto", paddingTop: "50px" }}>
+    <div style={{ width: "400px", margin: "auto", paddingTop: "65px" }}>
       <h1>Admin Login</h1>
       <Auth
         supabaseClient={supabase}
