@@ -96,6 +96,8 @@ export default function Dashboard() {
             color: 'white',
             border: 'none',
             padding: '8px 16px',
+            marginTop: 30,
+
             borderRadius: 5,
             cursor: 'pointer',
             fontWeight: 'bold',
